@@ -87,9 +87,6 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # Nix helper
-  programs.nh.enable = true;
-
   # Hyprland
   programs.hyprland = {
     enable = true;

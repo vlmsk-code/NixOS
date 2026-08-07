@@ -4,6 +4,7 @@
     ./home/theme.nix
     ./home/zsh.nix
     ./home/git.nix
+    ./home/nh.nix
   ];
 
   home.packages = with pkgs; [

@@ -1,7 +1,7 @@
 { ... }: {
   programs.nh = {
     enable = true;
-    flake = "~/nixos-config";
+    flake = "/etc/nixos";
 
     clean = {
       enable = true;
