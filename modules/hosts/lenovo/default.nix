@@ -22,6 +22,8 @@
 
         self.nixosModules.thunar
         self.nixosModules.desktop
+        self.nixosModules.pipewire
+
       ];
 
       boot.kernelPackages = pkgs.linuxPackages_latest;

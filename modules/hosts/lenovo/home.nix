@@ -14,13 +14,14 @@
     self.homeManagerModules.foot
   ];
 
+  home.sessionVariables.EDITOR = "codium --wait";
+  services.hyprpolkitagent.enable = true;
+
   home.packages = with pkgs; [
     obsidian
     android-tools
     payload-dumper-go
     freecad
-    gcc
-    hyprpolkitagent
     neovim
     vscodium
     firefox

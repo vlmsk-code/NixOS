@@ -53,8 +53,8 @@
 
       settings = {
         add_newline = false;
-        scan_timeout = 10;
-        command_timeout = 500;
+        scan_timeout = 50;
+        command_timeout = 1000;
 
         format = ''
           $directory$git_branch$git_status$nodejs$python$rust$golang$cmd_duration$line_break$character
