@@ -11,6 +11,7 @@
     self.homeManagerModules.git
     self.homeManagerModules.nh
     self.homeManagerModules.theme
+    self.homeManagerModules.foot
   ];
 
   home.packages = with pkgs; [
@@ -23,7 +24,6 @@
     neovim
     vscodium
     firefox
-    foot
     gvfs
     telegram-desktop
     evtest
