@@ -1,4 +1,10 @@
-{ self, pkgs, ... }: {
+{
+  self,
+  pkgs,
+  inputs,
+  ...
+}:
+{
 
   imports = [
     self.homeManagerModules.fish

@@ -7,7 +7,6 @@
 
   flake.nixosModules.lenovoConfiguration =
     {
-      inputs,
       pkgs,
       ...
     }:
@@ -21,6 +20,7 @@
         self.nixosModules.user
         self.nixosModules.thunar
         self.nixosModules.desktop
+        self.nixosModules.limine
       ];
 
       boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -86,7 +86,7 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs self; };
         backupFileExtension = "backup";
         overwriteBackup = true;
         users.vlmsk = import ./home.nix;
