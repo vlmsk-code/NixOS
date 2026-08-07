@@ -8,7 +8,7 @@
           include = "~/.config/foot/themes/noctalia";
         };
         cursor = {
-          stule = "beam";
+          style = "beam";
         };
       };
     };
