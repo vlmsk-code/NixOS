@@ -21,6 +21,28 @@
     };
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+  outputs =
+    inputs:
+    let
+      inherit (inputs.nixpkgs) lib;
+      inherit (lib.fileset) toList fileFilter;
+
+      # Файлы, которые НЕ являются flake-parts модулями
+      # и не должны попадать в автоматический импорт
+      nonModuleFiles = [
+        "flake.nix"
+        "hardware-configuration.nix"
+        "home.nix"
+        "disko.nix"
+      ];
+
+      isNixModule =
+        file: file.hasExt "nix" && !lib.elem file.name nonModuleFiles && !lib.hasPrefix "_" file.name;
+
+      importTree = path: toList (fileFilter isNixModule path);
+
+      mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
+    in
+    mkFlake { imports = importTree ./.; };
 
 }
