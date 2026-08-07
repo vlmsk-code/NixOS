@@ -19,6 +19,7 @@
   services.hyprpolkitagent.enable = true;
 
   home.packages = with pkgs; [
+    ntfs3g
     obsidian
     android-tools
     payload-dumper-go
