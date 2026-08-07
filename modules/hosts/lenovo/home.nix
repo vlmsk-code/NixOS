@@ -12,6 +12,7 @@
     self.homeManagerModules.nh
     self.homeManagerModules.theme
     self.homeManagerModules.foot
+    self.homeManagerModules.hyprland
   ];
 
   home.sessionVariables.EDITOR = "codium --wait";
