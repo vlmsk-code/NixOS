@@ -18,9 +18,10 @@
         ./hardware-configuration.nix
 
         self.nixosModules.user
+        self.nixosModules.limine
+
         self.nixosModules.thunar
         self.nixosModules.desktop
-        self.nixosModules.limine
       ];
 
       boot.kernelPackages = pkgs.linuxPackages_latest;
