@@ -13,6 +13,7 @@
     self.homeManagerModules.theme
     self.homeManagerModules.foot
     self.homeManagerModules.hyprland
+    self.homeManagerModules.noctalia
   ];
 
   home.sessionVariables.EDITOR = "codium --wait";
@@ -32,7 +33,7 @@
     evtest
     file-roller
     qbittorrent
-    inputs.noctalia.packages.${stdenv.hostPlatform.system}.default
+    # inputs.noctalia.packages.${stdenv.hostPlatform.system}.default
     inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default
   ];
 
