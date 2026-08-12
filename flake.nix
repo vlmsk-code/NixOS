@@ -1,11 +1,10 @@
 {
-  description = "My NixOS configuration";
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:vic/import-tree";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,28 +20,21 @@
     };
   };
 
-  outputs =
-    inputs:
-    let
-      inherit (inputs.nixpkgs) lib;
-      inherit (lib.fileset) toList fileFilter;
-
-      # Файлы, которые НЕ являются flake-parts модулями
-      # и не должны попадать в автоматический импорт
-      nonModuleFiles = [
-        "flake.nix"
-        "hardware-configuration.nix"
-        "home.nix"
-        "disko.nix"
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+  in {
+    nixosConfigurations.lenovo = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      inherit system;
+      modules = [
+        ./hosts/lenovo/configuration.nix
+        inputs.home-manager.nixosModules.default
+        inputs.disko.nixosModules.disko
       ];
-
-      isNixModule =
-        file: file.hasExt "nix" && !lib.elem file.name nonModuleFiles && !lib.hasPrefix "_" file.name;
-
-      importTree = path: toList (fileFilter isNixModule path);
-
-      mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
-    in
-    mkFlake { imports = importTree ./.; };
-
+    };
+  };
 }

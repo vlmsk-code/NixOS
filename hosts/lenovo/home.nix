@@ -1,25 +1,20 @@
 {
-  self,
   pkgs,
   inputs,
   ...
-}:
-{
-
+}: {
   imports = [
-    self.homeManagerModules.fish
-    self.homeManagerModules.git
-    self.homeManagerModules.nh
-    self.homeManagerModules.theme
-    self.homeManagerModules.foot
-    self.homeManagerModules.hyprland
-    self.homeManagerModules.noctalia
+    ../../modules/home-manager
   ];
 
-  home.sessionVariables.EDITOR = "codium --wait";
   services.hyprpolkitagent.enable = true;
 
   home.packages = with pkgs; [
+    alejandra
+    nil
+    helix
+    cura-appimage
+    onlyoffice-desktopeditors
     ntfs3g
     obsidian
     android-tools
@@ -40,6 +35,9 @@
   home.username = "vlmsk";
   home.homeDirectory = "/home/vlmsk";
   home.stateVersion = "26.05";
+  home.sessionVariables = {
+    EDITOR = "hx";
+  };
 
   programs.home-manager.enable = true;
 }
